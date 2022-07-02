@@ -1,0 +1,16 @@
+Algorithm: ndlw(X,Y,i,j,M)
+if M[i,j] > -INF
+    return M[i,j]
+if i = 0 and j = 0 then
+    return M[i,j] = 0
+
+if i = 0 or j = 0 then 
+    if i > 0 then
+        return M[i,j] = ndlw(X,Y,i-1,j,M) - 2
+    if j > 0 then
+        return M[i,j] = ndlw(X,Y,i,j-1,M) - 2
+
+if X[i] = Y[j] then
+    return M[i,j] = max(ndlw(X,Y,i-1,j-1,M) + 1, ndlw(X,Y,i-1,j,M) - 2, ndlw(X,Y,i,j-1,M) - 2)
+
+return M[i,j] = max(ndlw(X,Y,i-1,j-1,M) - 1, ndlw(X,Y,i-1,j,M) - 2, ndlw(X,Y,i,j-1,M) - 2)
